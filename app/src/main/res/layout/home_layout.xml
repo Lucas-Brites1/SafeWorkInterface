@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient">
+
+    <!-- Scroll com conteúdo principal -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            tools:context=".ui.home.HomeActivity">
+
+            <!-- Texto de Boas-vindas -->
+            <TextView
+                android:id="@+id/welcomeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="Seja bem-vindo, "
+                android:textAlignment="center"
+                android:textColor="#111"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Grid com duas colunas para os dois primeiros cards -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/centerGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <!-- Card: Nova Reclamação -->
+            <androidx.cardview.widget.CardView
+                android:background="@color/white"
+                android:id="@+id/cardNovaReclamacao"
+                style="@style/HomeCardStyle"
+                app:layout_constraintTop_toBottomOf="@id/welcomeText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cardMinhasReclamacoes"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp">
+
+                <include layout="@layout/card_item_nova" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card: Minhas Reclamações -->
+            <androidx.cardview.widget.CardView
+                android:background="@color/white"
+                android:id="@+id/cardMinhasReclamacoes"
+                style="@style/HomeCardStyle"
+                app:layout_constraintTop_toBottomOf="@id/welcomeText"
+                app:layout_constraintStart_toEndOf="@id/cardNovaReclamacao"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp">
+
+                <include layout="@layout/card_item_minhas" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card: Reclamações Recentes -->
+            <androidx.cardview.widget.CardView
+                android:background="@color/white"
+
+                android:id="@+id/cardRecentClaims"
+                style="@style/HomeCardFullWidth"
+                app:layout_constraintTop_toBottomOf="@id/cardMinhasReclamacoes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp">
+
+                <include layout="@layout/card_item_recent" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card: Estatísticas -->
+            <androidx.cardview.widget.CardView
+                android:background="@color/white"
+
+                android:id="@+id/cardStatistics"
+                style="@style/HomeCardFullWidth"
+                app:layout_constraintTop_toBottomOf="@id/cardRecentClaims"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp">
+
+                <include layout="@layout/card_item_statistics" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card: Mapa -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardMap"
+                style="@style/HomeCardFullWidth"
+                android:background="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/cardStatistics"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp">
+
+                <include layout="@layout/card_item_map" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/waveBottom"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="bottom"
+        android:scaleType="fitXY"
+        android:src="@drawable/wave_1_"
+        tools:ignore="ContentDescription" />
+</FrameLayout>

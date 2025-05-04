@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="@color/white"
+    >
+
+    <!-- Total -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="@color/white"
+
+        >
+
+        <ImageView
+            android:id="@+id/iconTotal"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_total"
+            android:contentDescription="Total Reclamacoes"
+            app:tint="@color/iconColor"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total"
+            android:textAlignment="center"
+            android:textColor="#111"
+            android:textSize="12sp"
+            android:fontFamily="@font/montserratregular"
+            />
+    </LinearLayout>
+
+    <!-- Em Andamento -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/iconInProgress"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_progress"
+            android:contentDescription="Em Andamento"
+            app:tint="@color/iconColor"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Em Andamento"
+            android:textAlignment="center"
+            android:textColor="#111"
+            android:textSize="12sp"
+            android:fontFamily="@font/montserratregular"
+
+            />
+    </LinearLayout>
+
+    <!-- Resolvidas -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="@color/white"
+        >
+
+        <ImageView
+            android:id="@+id/iconResolved"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_resolved"
+            android:contentDescription="Resolvidas"
+            app:tint="@color/iconColor"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resolvidas"
+            android:textAlignment="center"
+            android:textColor="#111"
+            android:textSize="12sp"
+            android:fontFamily="@font/montserratregular"
+
+            />
+    </LinearLayout>
+</LinearLayout>

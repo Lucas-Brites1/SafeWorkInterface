@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="iconColor">#FF333333</color>
+    <color name="login_button_blue">#192772</color>
+    <color name="spinner_color">#A59C94</color>
+</resources>
