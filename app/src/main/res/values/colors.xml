@@ -5,4 +5,9 @@
     <color name="iconColor">#FF333333</color>
     <color name="login_button_blue">#192772</color>
     <color name="spinner_color">#A59C94</color>
+    <color name="nice_orange">#FFA726</color> <!-- Laranja moderno -->
+    <color name="nice_green">#66BB6A</color>  <!-- Verde suave -->
+    <color name="nice_blue">#42A5F5</color>   <!-- Azul vibrante -->
+    <color name="nice_beige">#F5F5DC</color>  <!-- Bege clássico -->
+    <color name="delete_color">#E57373</color>
 </resources>

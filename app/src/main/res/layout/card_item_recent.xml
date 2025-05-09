@@ -6,17 +6,18 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/white"
+    android:gravity="center_horizontal"
     >
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserratsemibold"
-        android:text="Reclamações Mais Recentes"
-        android:textAlignment="center"
-        android:textColor="#111"
-        android:textSize="16sp"
-        android:layout_marginBottom="10sp"
-        android:background="@color/white"
-        />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/montserratsemibold"
+    android:text="Reclamações Mais Recentes"
+    android:textAlignment="center"
+    android:textColor="#111"
+    android:textSize="16sp"
+    android:layout_marginBottom="10sp"
+    android:background="@color/white"
+    android:layout_gravity="center"/>
 </LinearLayout>

@@ -18,7 +18,6 @@
         android:orientation="vertical"
         android:padding="8dp"
         android:background="@color/white"
-
         >
 
         <ImageView
@@ -27,7 +26,7 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_total"
             android:contentDescription="Total Reclamacoes"
-            app:tint="@color/iconColor"
+            app:tint="@color/nice_blue"
             />
 
         <TextView
@@ -39,6 +38,18 @@
             android:textSize="12sp"
             android:fontFamily="@font/montserratregular"
             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:text="X"
+            android:textAlignment="center"
+            android:textColor="#111"
+            android:textSize="16sp"
+            android:fontFamily="@font/montserratextrabold"
+        />
+
     </LinearLayout>
 
     <!-- Em Andamento -->
@@ -56,19 +67,30 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_progress"
             android:contentDescription="Em Andamento"
-            app:tint="@color/iconColor"
+            app:tint="@color/nice_orange"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Em Andamento"
+            android:text="Andamento"
             android:textAlignment="center"
             android:textColor="#111"
             android:textSize="12sp"
             android:fontFamily="@font/montserratregular"
-
             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:text="Y"
+            android:textAlignment="center"
+            android:textColor="#111"
+            android:textSize="16sp"
+            android:fontFamily="@font/montserratextrabold"
+            />
+
     </LinearLayout>
 
     <!-- Resolvidas -->
@@ -88,7 +110,7 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_resolved"
             android:contentDescription="Resolvidas"
-            app:tint="@color/iconColor"
+            app:tint="@color/nice_green"
             />
 
         <TextView
@@ -99,7 +121,18 @@
             android:textColor="#111"
             android:textSize="12sp"
             android:fontFamily="@font/montserratregular"
-
             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Z"
+            android:layout_marginTop="5sp"
+            android:textAlignment="center"
+            android:textColor="#111"
+            android:textSize="16sp"
+            android:fontFamily="@font/montserratextrabold"
+        />
+
     </LinearLayout>
 </LinearLayout>

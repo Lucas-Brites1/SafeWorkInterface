@@ -21,10 +21,12 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginBottom
 import com.safework.R
 import org.w3c.dom.Text
 
@@ -252,12 +254,50 @@ class HomeDynamicIssuesFactory : WidgetFactory<IssueInfo> {
             status.text = issue.status
             when (issue.status) {
                 "PENDENTE" -> status.setBackgroundResource(R.drawable.status_pending)
+                "ANDAMENTO" -> status.setBackgroundResource(R.drawable.status_wip)
                 "ANALISE" -> status.setBackgroundResource(R.drawable.status_analysis)
-                "FINALIZADO" -> status.setBackgroundResource(R.drawable.status_done)
+                "FINALIZADA" -> status.setBackgroundResource(R.drawable.status_done)
             }
 
             val iconResource = Icon.createWithResource(context, issue.icon)
             icon.setImageIcon(iconResource)
+
+            views.add(view)
+        }
+
+        return views
+    }
+}
+
+class IssueCollectionFactory : WidgetFactory<IssueInfo> {
+    override fun create(context: Context, data: List<IssueInfo>): List<View> {
+        val views = mutableListOf<View>()
+
+        val parent = LinearLayout(context)
+        parent.orientation = LinearLayout.VERTICAL
+
+        data.forEach { issue ->
+            val view = LayoutInflater.from(context).inflate(R.layout.issue_item_collection_layout, parent, false)
+
+            val titleText = view.findViewById<TextView>(R.id.title)
+            val status = view.findViewById<TextView>(R.id.issue_status)
+            val icon = view.findViewById<ImageView>(R.id.issue_icon_status)
+
+            titleText.text = issue.title
+            status.text = issue.status
+            when (issue.status) {
+                "PENDENTE" -> status.setBackgroundResource(R.drawable.status_pending)
+                "ANDAMENTO" -> status.setBackgroundResource(R.drawable.status_wip)
+                "ANALISE" -> status.setBackgroundResource(R.drawable.status_analysis)
+                "FINALIZADA" -> status.setBackgroundResource(R.drawable.status_done)
+            }
+
+            val iconResource = Icon.createWithResource(context, issue.icon)
+            icon.setImageIcon(iconResource)
+
+            val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
+            layoutParams.bottomMargin = 12
+            view.layoutParams = layoutParams
 
             views.add(view)
         }

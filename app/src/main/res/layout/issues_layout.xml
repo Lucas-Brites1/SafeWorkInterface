@@ -91,9 +91,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:minLines="3"
-                    android:inputType="textMultiLine"
+                    android:layout_height="wrap_content"
+                    android:minLines="5"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine|textCapSentences"
                     android:fontFamily="@font/montserratregular"
                     android:textColor="#111"
                     android:textColorHint="#888" />

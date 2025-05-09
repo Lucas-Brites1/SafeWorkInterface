@@ -51,7 +51,6 @@ class IssueActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private var selectedImageUri: Uri? = null // Para armazenar a URI da imagem selecionada
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.issues_layout)
@@ -126,18 +125,18 @@ class IssueActivity : AppCompatActivity(), OnMapReadyCallback {
 
                             if (selectedImageUri != null) {
                                 sendImageToAPI(selectedImageUri!!, issueId, this)
-                            } else {
-                                ViewUtils.delayThen(
-                                    action = {
-                                        ViewUtils.changeActivity<HomeActivity>(this, variables)
-                                    }, ViewUtils.Seconds(q = 3)
-                                )
                             }
                         }
                         result.onFailure { error ->
                             ViewUtils.showNotification(this, "Erro ao registrar: ${error.message}",
                                 ViewUtils.NotificationType.ERROR)
                         }
+
+                        ViewUtils.delayThen(
+                            action = {
+                                ViewUtils.changeActivity<HomeActivity>(this, variables)
+                            }, ViewUtils.Seconds(q = 3)
+                        )
                     }
 
                 },

@@ -3,7 +3,11 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
-    android:elevation="2dp">
+    android:elevation="1dp"
+    app:cardCornerRadius="12dp"
+    android:background="@drawable/card_border_b"
+    app:cardBackgroundColor="@android:color/transparent"
+    >
 
     <LinearLayout
         android:orientation="horizontal"
@@ -11,27 +15,28 @@
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:gravity="center_vertical"
-        android:background="@color/white"
-        >
+        android:background="@color/white">
 
+        <!-- Título -->
         <TextView
             android:fontFamily="@font/montserratregular"
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Title"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:gravity="start|center_vertical"
             android:textColor="#111"
             android:layout_weight="1" />
 
+        <!-- Status -->
         <TextView
             android:id="@+id/issue_status"
-            android:layout_width="60dp"
+            android:layout_width="80dp"
             android:layout_height="20dp"
             android:padding="4dp"
             android:text="Status"
-            android:textSize="7sp"
+            android:textSize="10sp"
             android:gravity="center"
             android:fontFamily="@font/montserratsemibold"
             android:textColor="@color/white"
@@ -39,6 +44,7 @@
             android:minWidth="60dp"
             android:layout_marginStart="8dp"/>
 
+        <!-- Ícone de Status -->
         <ImageView
             android:id="@+id/issue_icon_status"
             android:layout_width="20dp"
@@ -46,8 +52,16 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="8dp"
             android:src="@drawable/ic_lock"
-            app:tint="@color/iconColor"
-            />
+            app:tint="@color/iconColor" />
 
+        <!-- Ícone de Lixeira -->
+        <ImageView
+            android:id="@+id/issue_delete"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/delete_icon"
+            app:tint="@color/delete_color" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

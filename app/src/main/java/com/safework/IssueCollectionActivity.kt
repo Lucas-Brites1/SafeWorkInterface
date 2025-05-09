@@ -5,43 +5,40 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.safework.api.ApiCaller
 import com.safework.utils.HomeDynamicIssuesFactory
+import com.safework.utils.IssueCollectionFactory
 import com.safework.utils.IssueInfo
 import com.safework.utils.ViewUtils
 import com.safework.utils.appendAll
 
-class HomeActivity : AppCompatActivity() {
+class IssueCollectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.home_layout)
+        setContentView(R.layout.issue_collection_layout)
         ViewUtils.transparentBar(this)
 
-        val activity = this@HomeActivity
+        val activity = this@IssueCollectionActivity
         val variables = ViewUtils.getIntentVariables(
             context = activity,
             variables = listOf("userId", "email", "username")
         )
 
         val userId = variables[0]["userId"] as String
-        val username = variables[2]["username"] as String
 
-        activity.findViewById<TextView>(R.id.welcomeText).text = "Seja bem vindo, $username!"
-
-        redirectToIssuesActivity(activity, variables)
-        redirectToIssuesCollection(activity, variables)
         loadingIssues(activity, userId)
     }
 
     private fun loadingIssues(context: Context, userId: String) {
-        Log.d("HomeActivity", "userId: $userId")
+        Log.d("IssueCollectionActivity", "userId: $userId")
 
         ApiCaller.getIssuesByUserId(
             userId = userId,
-            length = 3,
+            length = 0,
             callback = { result ->
                 result.fold(
                     onSuccess = { issues ->
@@ -68,11 +65,11 @@ class HomeActivity : AppCompatActivity() {
                                 )
                             }
 
-                            val container = findViewById<ViewGroup>(R.id.recentClaimsContainer)
+                            val container = findViewById<LinearLayout>(R.id.recentClaimsContainer)
                             container.appendAll(
                                 context = context,
                                 dataList = issueInfoList,
-                                factory = HomeDynamicIssuesFactory()
+                                factory = IssueCollectionFactory()
                             )
                         }
                     },
@@ -89,19 +86,4 @@ class HomeActivity : AppCompatActivity() {
             }
         )
     }
-
-    private fun redirectToIssuesActivity(context: Context, variables: List<Map<String, Any>>) {
-        val card = (context as Activity).findViewById<CardView>(R.id.cardNovaReclamacao)
-        card.setOnClickListener {
-            ViewUtils.changeActivity<IssueActivity>(context, variables)
-        }
-    }
-
-    private fun redirectToIssuesCollection(context: Context, variables: List<Map<String, Any>>) {
-        val card = (context as Activity).findViewById<CardView>(R.id.cardMinhasReclamacoes)
-        card.setOnClickListener {
-            ViewUtils.changeActivity<IssueCollectionActivity>(context, variables)
-        }
-    }
 }
-
