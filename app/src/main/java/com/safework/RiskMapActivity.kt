@@ -77,4 +77,11 @@ class RiskMapActivity : AppCompatActivity(), OnMapReadyCallback {
             googleMap.addMarker(marker)
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        ViewUtils.changeActivity<AdminActivity>(
+            this
+        )
+    }
 }

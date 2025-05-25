@@ -1,6 +1,6 @@
 <resources>
     <style name="HomeCardStyle">
-        <item name="android:background">#FFFFFF</item>
+        <item name="cardBackgroundColor">#FFFFFF</item> <!-- Correção aqui -->
         <item name="cardCornerRadius">16dp</item>
         <item name="cardElevation">4dp</item>
         <item name="cardUseCompatPadding">true</item>
@@ -9,12 +9,11 @@
     </style>
 
     <style name="HomeCardFullWidth">
-        <item name="android:background">#FFFFFF</item>
+        <item name="cardBackgroundColor">#FFFFFF</item> <!-- Correção aqui -->
         <item name="cardCornerRadius">16dp</item>
         <item name="cardElevation">8dp</item>
         <item name="cardUseCompatPadding">true</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-
 </resources>

@@ -82,7 +82,9 @@ class HomeActivity : AppCompatActivity() {
                     }
                 )
             }
+
         )
+
     }
 
     private fun redirectToIssuesActivity(context: Context, variables: List<Map<String, Any>>) {
@@ -97,6 +99,11 @@ class HomeActivity : AppCompatActivity() {
         card.setOnClickListener {
             ViewUtils.changeActivity<IssueCollectionActivity>(context, variables)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        ViewUtils.changeActivity<LoginActivity>(this)
     }
 }
 

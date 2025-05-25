@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Clique aqui para ver todas as suas reclamações no mapa"
+        android:text="Visualizar Mapa de Risco"
         android:fontFamily="@font/montserratbold"
         android:textAlignment="center"
         android:textColor="#0066CC"

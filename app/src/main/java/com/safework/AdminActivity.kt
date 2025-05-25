@@ -10,11 +10,24 @@ class AdminActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin)
         ViewUtils.transparentBar(this) // Se estiver usando barra transparente no app
-        findViewById<CardView>(R.id.cardMapa).setOnClickListener {
+        findViewById<CardView>(R.id.cardMap).setOnClickListener {
             ViewUtils.changeActivity<RiskMapActivity>(
-                this,
-                null
+                this
+            )
+        }
+
+        findViewById<CardView>(R.id.cardGerenciar).setOnClickListener {
+            ViewUtils.changeActivity<AdminCollectionActivity>(
+                this
             )
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        ViewUtils.changeActivity<LoginActivity>(
+            this
+        )
+    }
 }
+

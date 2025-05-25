@@ -30,6 +30,7 @@
         <activity android:name=".IssueCollectionActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".RiskMapActivity" />
+        <activity android:name=".AdminCollectionActivity" />
          <activity
             android:name=".LoginActivity"
             android:exported="true">

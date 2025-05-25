@@ -196,4 +196,24 @@ object ApiCaller {
             }
         }
     }
+
+    fun getIssuesByDateRange(
+        startDate: String,
+        endDate: String,
+        callback: (Result<List<IssueModel>>) -> Unit
+    ) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = api.getIssuesByDateRange(startDate, endDate)
+
+                withContext(Dispatchers.Main) {
+                    callback(Result.success(response))
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    callback(Result.failure(e))
+                }
+            }
+        }
+    }
 }

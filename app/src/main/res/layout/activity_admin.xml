@@ -35,10 +35,11 @@
             <!-- Card: Gerenciar Reclamações -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardGerenciar"
+                android:background="@color/white"
                 android:layout_width="0dp"
+                style="@style/HomeCardStyle"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:background="@color/white"
                 android:clickable="true"
                 android:focusable="true"
                 app:cardCornerRadius="16dp"
@@ -56,35 +57,21 @@
                     android:textColor="#111"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:fontFamily="@font/montserratsemibold" />
+                    android:fontFamily="@font/montserratbold" />
             </androidx.cardview.widget.CardView>
 
-            <!-- Card: Ver Mapa de Risco -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardMapa"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:id="@+id/cardMap"
+                style="@style/HomeCardFullWidth"
                 android:background="@color/white"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="6dp"
                 app:layout_constraintTop_toBottomOf="@id/cardGerenciar"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="24dp"
-                    android:text="Ver Mapa de Risco"
-                    android:textSize="18sp"
-                    android:textColor="#111"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:fontFamily="@font/montserratsemibold" />
+                <include layout="@layout/card_item_map" />
             </androidx.cardview.widget.CardView>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
