@@ -1,10 +1,13 @@
 package com.safework
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.safework.api.ApiCaller
 import com.safework.models.User
@@ -18,8 +21,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register_layout)
         ViewUtils.transparentBar(context = this)
-        //val variables = getIntentVariables(context = this, variables = listOf("userId", "email", "username"))
-        //Log.d("API_RESPONSE", variables.toString())
+        sendBackToLogin(context = this);
 
         this.findViewById<Button>(R.id.btnCadastrar).onClick {
             val firstName = this.findViewById<EditText>(R.id.editNome).text.toString()
@@ -65,6 +67,14 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
+
+    internal fun sendBackToLogin(context: Context) {
+        (context as Activity).findViewById<TextView>(R.id.linkLogin).onClick {
+            ViewUtils.changeActivity<LoginActivity>(
+                context = context
+            )
+        }
+    }
 }
 
 object UserValidator {
@@ -99,6 +109,8 @@ object UserValidator {
             else -> Response(success = true, message = "Usuário válido")
         }
     }
+
+
 }
 
 

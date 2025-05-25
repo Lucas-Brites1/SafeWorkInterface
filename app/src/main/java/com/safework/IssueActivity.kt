@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -13,6 +14,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -41,8 +43,11 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.bson.types.ObjectId
 import java.io.File
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
+import java.util.UUID
 
 
 class IssueActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -51,6 +56,7 @@ class IssueActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private var selectedImageUri: Uri? = null // Para armazenar a URI da imagem selecionada
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.issues_layout)
@@ -94,8 +100,7 @@ class IssueActivity : AppCompatActivity(), OnMapReadyCallback {
                     if (urgency == "MÉDIO") {
                         urgency = "MEDIO"
                     }
-                    val createdAt = SimpleDateFormat("dd/MM/yyyy - HH:mm", Locale.getDefault()).format(Date())
-                    val newIssueId = ObjectId().toHexString().toString()
+                    val newIssueId = ObjectId().toHexString()
 
                     val newIssue = IssueModel(
                         _id = newIssueId,
@@ -113,18 +118,19 @@ class IssueActivity : AppCompatActivity(), OnMapReadyCallback {
                             latitude = userLoc.latitude,
                             longitude = userLoc.longitude
                         ),
-                        createdAt = createdAt
+                        createdAt = LocalDateTime.now().toString()
                     )
+
+                    Log.d("DEBUG", "newIssue: $newIssue")
 
                     registerIssue(newIssue) { result ->
                         result.onSuccess { response ->
-                            val issueId = newIssueId
                             ViewUtils.showNotification(this, "Reclamação registrada com sucesso!")
-                            Log.d("DEBUG", "issueID: $issueId")
+                            Log.d("DEBUG", "issueID: $newIssueId")
                             Log.d("DEBUG", "Uri: ${selectedImageUri.toString()}")
 
                             if (selectedImageUri != null) {
-                                sendImageToAPI(selectedImageUri!!, issueId, this)
+                                sendImageToAPI(selectedImageUri!!, newIssueId, this)
                             }
                         }
                         result.onFailure { error ->

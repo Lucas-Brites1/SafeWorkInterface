@@ -1,9 +1,11 @@
 package com.safework.models
 
+import android.annotation.SuppressLint
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import org.bson.types.ObjectId
 
+@SuppressLint("UnsafeOptInUsageError")
 @Serializable
 data class User(
     @Contextual

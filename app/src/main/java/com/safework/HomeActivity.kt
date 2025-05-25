@@ -41,7 +41,7 @@ class HomeActivity : AppCompatActivity() {
 
         ApiCaller.getIssuesByUserId(
             userId = userId,
-            length = 3,
+            length = 6,
             callback = { result ->
                 result.fold(
                     onSuccess = { issues ->
@@ -54,17 +54,12 @@ class HomeActivity : AppCompatActivity() {
                             )
 
                             val issueInfoList = issues.mapIndexed { index, issue ->
-                                val icon = when (issue.status.toString()) {
-                                    "ANDAMENTO" -> 0
-                                    "PENDENTE" -> 1
-                                    "ANALISE" -> 2
-                                    else -> 3
-                                }
+
 
                                 IssueInfo(
+                                    id = issue._id,
                                     title = issue.title,
-                                    status = issue.status.toString(),
-                                    icon = iconMap[icon]
+                                    status = issue.level.toString(),
                                 )
                             }
 

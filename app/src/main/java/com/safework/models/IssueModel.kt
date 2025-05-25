@@ -3,12 +3,13 @@ package com.safework.models
 import android.annotation.SuppressLint
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
-import org.bson.types.ObjectId
+import kotlinx.serialization.UseSerializers
+import java.time.LocalDateTime
 
 @SuppressLint("UnsafeOptInUsageError")
 @Serializable
 data class IssueModel(
-    val _id: String? = null,
+    val _id: String,
     val user: IssueUser,
     val level: IssueLevel,
     val status: IssueStatus,
@@ -16,7 +17,7 @@ data class IssueModel(
     val title: String,
     val description: String,
     val comments: String? = null,
-    val createdAt: String
+    val createdAt: String? = null
 )
 
 @SuppressLint("UnsafeOptInUsageError")

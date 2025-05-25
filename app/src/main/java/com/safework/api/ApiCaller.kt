@@ -1,22 +1,27 @@
 package com.safework.api
 
 import ApiService
+import android.util.Log
 import com.safework.models.IssueModel
 import com.safework.models.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
+import retrofit2.http.Path
+import retrofit2.http.Query
 import java.io.File
 
 object ApiCaller {
     private val api = RetrofitManager.createService(serviceClass = ApiService::class.java)
+
 
     fun loginUser(
         email: String,
@@ -91,6 +96,24 @@ object ApiCaller {
         }
     }
 
+    fun getIssues(
+        length: Int,
+        callback: (Result<List<IssueModel>>) -> Unit
+    ) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = api.getIssues(length = length)
+                withContext(Dispatchers.Main) {
+                    callback(Result.success(response.problemas))
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    callback(Result.failure(e))
+                }
+            }
+        }
+    }
+
     fun uploadImage(
         issueId: String,
         imageFile: File,
@@ -131,6 +154,44 @@ object ApiCaller {
             } catch (e: HttpException) {
                 withContext(Dispatchers.Main) {
                         callback(Result.failure(Exception("Erro desconhecido, ${e.message}")))
+                }
+            }
+        }
+    }
+
+    fun deleteIssue(id: String, onResult: (Boolean) -> Unit = {}) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                api.deleteIssue(id)
+                Log.d("ApiService", "Issue deleted successfully")
+                withContext(Dispatchers.Main) {
+                    onResult(true)
+                }
+            } catch (e: Exception) {
+                Log.e("ApiService", "Error deleting issue", e)
+                withContext(Dispatchers.Main) {
+                    onResult(false)
+                }
+            }
+        }
+    }
+
+    fun getUserRoleById(id: String, callback: (Result<RoleResponse>) -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val startTime = System.currentTimeMillis()
+                val response = api.getUserRole(id)
+                val endTime = System.currentTimeMillis()
+
+                Log.d("UserRole", "Tempo de resposta: ${(endTime - startTime)}ms")
+
+                withContext(Dispatchers.Main) {
+                    callback(Result.success(response))
+                }
+            } catch (e: Exception) {
+                Log.e("UserRole", "Erro ao buscar permissão", e)
+                withContext(Dispatchers.Main) {
+                    callback(Result.failure(e))
                 }
             }
         }

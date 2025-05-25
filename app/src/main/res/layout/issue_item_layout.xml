@@ -38,16 +38,5 @@
             android:background="@drawable/status_background"
             android:minWidth="60dp"
             android:layout_marginStart="8dp"/>
-
-        <ImageView
-            android:id="@+id/issue_icon_status"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="8dp"
-            android:src="@drawable/ic_lock"
-            app:tint="@color/iconColor"
-            />
-
     </LinearLayout>
 </androidx.cardview.widget.CardView>

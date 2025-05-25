@@ -17,6 +17,11 @@ import com.safework.utils.ViewUtils
 import com.safework.utils.appendAll
 
 class IssueCollectionActivity : AppCompatActivity() {
+
+    private lateinit var userId: String
+    private lateinit var email: String
+    private lateinit var username: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.issue_collection_layout)
@@ -28,7 +33,9 @@ class IssueCollectionActivity : AppCompatActivity() {
             variables = listOf("userId", "email", "username")
         )
 
-        val userId = variables[0]["userId"] as String
+        userId = variables[0]["userId"] as String
+        email = variables[1]["email"] as String
+        username = variables[2]["username"] as String
 
         loadingIssues(activity, userId)
     }
@@ -43,25 +50,11 @@ class IssueCollectionActivity : AppCompatActivity() {
                 result.fold(
                     onSuccess = { issues ->
                         if (issues.isNotEmpty()) {
-                            val iconMap = listOf(
-                                R.drawable.ic_progress,
-                                R.drawable.pending_icon,
-                                R.drawable.analysis_icon,
-                                R.drawable.ic_resolved,
-                            )
-
                             val issueInfoList = issues.mapIndexed { index, issue ->
-                                val icon = when (issue.status.toString()) {
-                                    "ANDAMENTO" -> 0
-                                    "PENDENTE" -> 1
-                                    "ANALISE" -> 2
-                                    else -> 3
-                                }
-
                                 IssueInfo(
+                                    id = issue._id,
                                     title = issue.title,
-                                    status = issue.status.toString(),
-                                    icon = iconMap[icon]
+                                    status = issue.level.toString()
                                 )
                             }
 
@@ -84,6 +77,18 @@ class IssueCollectionActivity : AppCompatActivity() {
                     }
                 )
             }
+        )
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        ViewUtils.changeActivity<HomeActivity>(
+            this,
+            variables = listOf(
+                mapOf("userId" to userId),
+                mapOf("email" to email),
+                mapOf("username" to username)
+            )
         )
     }
 }

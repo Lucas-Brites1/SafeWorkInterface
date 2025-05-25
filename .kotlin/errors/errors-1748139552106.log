@@ -1,0 +1,272 @@
+kotlin version: 2.0.21
+error message: org.jetbrains.kotlin.backend.common.CompilationException: Back-end: Please report this problem https://kotl.in/issue
+/home/brites/AndroidStudioProjects/Safework/app/src/main/java/com/safework/models/IssueModel.kt:9:1
+Problem with `@SuppressLint(value = ["UnsafeOptInUsageError"])
+@Serializable
+data class IssueModel {
+  constructor(_id: ObjectId? = null, user: IssueUser, level: IssueLevel, status: IssueStatus, mapLocal: LocationModel, title: String, description: String, comments: String? = null, createdAt: LocalDateTime) /* primary */ {
+    super/*Any*/()
+    /* <init>() */
+
+  }
+
+  @Contextual
+  val _id: ObjectId?
+    field = _id
+    get
+
+  val user: IssueUser
+    field = user
+    get
+
+  val level: IssueLevel
+    field = level
+    get
+
+  val status: IssueStatus
+    field = status
+    get
+
+  val mapLocal: LocationModel
+    field = mapLocal
+    get
+
+  val title: String
+    field = title
+    get
+
+  val description: String
+    field = description
+    get
+
+  val comments: String?
+    field = comments
+    get
+
+  val createdAt: LocalDateTime
+    field = createdAt
+    get
+
+  companion object Companion {
+    private constructor() /* primary */ {
+      super/*Any*/()
+      /* <init>() */
+
+    }
+
+    fun serializer(): KSerializer<IssueModel>
+
+    /* fake */ override operator fun equals(other: Any?): Boolean
+
+    /* fake */ override fun hashCode(): Int
+
+    /* fake */ override fun toString(): String
+
+  }
+
+  @Deprecated(message = "This synthesized declaration should not be used directly", level = DeprecationLevel.HIDDEN)
+  object $serializer : GeneratedSerializer<IssueModel> {
+    private constructor() /* primary */ {
+      super/*Any*/()
+      /* <init>() */
+
+    }
+
+    override fun serialize(encoder: Encoder, value: IssueModel)
+
+    override fun deserialize(decoder: Decoder): IssueModel
+
+    override val descriptor: SerialDescriptor
+      override get
+
+    override fun childSerializers(): Array<KSerializer<*>>
+
+    /* fake */ override fun typeParametersSerializers(): Array<KSerializer<*>>
+
+    /* fake */ override operator fun equals(other: Any?): Boolean
+
+    /* fake */ override fun hashCode(): Int
+
+    /* fake */ override fun toString(): String
+
+  }
+
+  operator fun component1(): ObjectId? {
+    return <this>.#_id
+  }
+
+  operator fun component2(): IssueUser {
+    return <this>.#user
+  }
+
+  operator fun component3(): IssueLevel {
+    return <this>.#level
+  }
+
+  operator fun component4(): IssueStatus {
+    return <this>.#status
+  }
+
+  operator fun component5(): LocationModel {
+    return <this>.#mapLocal
+  }
+
+  operator fun component6(): String {
+    return <this>.#title
+  }
+
+  operator fun component7(): String {
+    return <this>.#description
+  }
+
+  operator fun component8(): String? {
+    return <this>.#comments
+  }
+
+  operator fun component9(): LocalDateTime {
+    return <this>.#createdAt
+  }
+
+  fun copy(_id: ObjectId? = <this>.#_id, user: IssueUser = <this>.#user, level: IssueLevel = <this>.#level, status: IssueStatus = <this>.#status, mapLocal: LocationModel = <this>.#mapLocal, title: String = <this>.#title, description: String = <this>.#description, comments: String? = <this>.#comments, createdAt: LocalDateTime = <this>.#createdAt): IssueModel {
+    return IssueModel(_id = _id, user = user, level = level, status = status, mapLocal = mapLocal, title = title, description = description, comments = comments, createdAt = createdAt)
+  }
+
+  override fun toString(): String {
+    return "IssueModel(" + "_id=" + <this>.#_id + ", " + "user=" + <this>.#user + ", " + "level=" + <this>.#level + ", " + "status=" + <this>.#status + ", " + "mapLocal=" + <this>.#mapLocal + ", " + "title=" + <this>.#title + ", " + "description=" + <this>.#description + ", " + "comments=" + <this>.#comments + ", " + "createdAt=" + <this>.#createdAt + ")"
+  }
+
+  override fun hashCode(): Int {
+    var result: Int = when {
+      EQEQ(arg0 = <this>.#_id, arg1 = null) -> 0
+      else -> <this>.#_id.hashCode()
+    }
+    result = result.times(other = 31).plus(other = <this>.#user.hashCode())
+    result = result.times(other = 31).plus(other = <this>.#level.hashCode())
+    result = result.times(other = 31).plus(other = <this>.#status.hashCode())
+    result = result.times(other = 31).plus(other = <this>.#mapLocal.hashCode())
+    result = result.times(other = 31).plus(other = <this>.#title.hashCode())
+    result = result.times(other = 31).plus(other = <this>.#description.hashCode())
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#comments, arg1 = null) -> 0
+      else -> <this>.#comments.hashCode()
+    })
+    result = result.times(other = 31).plus(other = <this>.#createdAt.hashCode())
+    return result
+  }
+
+  override operator fun equals(other: Any?): Boolean {
+    when {
+      EQEQEQ(arg0 = <this>, arg1 = other) -> return true
+    }
+    when {
+      other !is IssueModel -> return false
+    }
+    val tmp0_other_with_cast: IssueModel = other as IssueModel
+    when {
+      EQEQ(arg0 = <this>.#_id, arg1 = tmp0_other_with_cast.#_id).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#user, arg1 = tmp0_other_with_cast.#user).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#level, arg1 = tmp0_other_with_cast.#level).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#status, arg1 = tmp0_other_with_cast.#status).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#mapLocal, arg1 = tmp0_other_with_cast.#mapLocal).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#title, arg1 = tmp0_other_with_cast.#title).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#description, arg1 = tmp0_other_with_cast.#description).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#comments, arg1 = tmp0_other_with_cast.#comments).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#createdAt, arg1 = tmp0_other_with_cast.#createdAt).not() -> return false
+    }
+    return true
+  }
+
+  @JvmStatic
+  internal fun write$Self(self: IssueModel, output: CompositeEncoder, serialDesc: SerialDescriptor)
+
+  internal constructor(seen0: Int, _id: ObjectId?, user: IssueUser?, level: IssueLevel?, status: IssueStatus?, mapLocal: LocationModel?, title: String?, description: String?, comments: String?, createdAt: LocalDateTime?, serializationConstructorMarker: SerializationConstructorMarker?)
+
+}
+
+`
+Details: kotlinx.serialization compiler plugin internal error: unable to transform declaration, see cause
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializerClassLowering.lower(SerializationLoweringExtension.kt:230)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtensionKt$runOnFileInOrder$1.visitClass(SerializationLoweringExtension.kt:46)
+	at org.jetbrains.kotlin.ir.visitors.IrElementVisitorVoid$DefaultImpls.visitClass(IrElementVisitorVoid.kt:44)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtensionKt$runOnFileInOrder$1.visitClass(SerializationLoweringExtension.kt:40)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtensionKt$runOnFileInOrder$1.visitClass(SerializationLoweringExtension.kt:40)
+	at org.jetbrains.kotlin.ir.declarations.IrClass.accept(IrClass.kt:72)
+	at org.jetbrains.kotlin.ir.declarations.IrFile.acceptChildren(IrFile.kt:34)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitorsKt.acceptChildrenVoid(IrVisitors.kt:15)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtensionKt$runOnFileInOrder$1.visitElement(SerializationLoweringExtension.kt:42)
+	at org.jetbrains.kotlin.ir.visitors.IrElementVisitorVoid$DefaultImpls.visitPackageFragment(IrElementVisitorVoid.kt:168)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtensionKt$runOnFileInOrder$1.visitPackageFragment(SerializationLoweringExtension.kt:40)
+	at org.jetbrains.kotlin.ir.visitors.IrElementVisitorVoid$DefaultImpls.visitFile(IrElementVisitorVoid.kt:184)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtensionKt$runOnFileInOrder$1.visitFile(SerializationLoweringExtension.kt:40)
+	at org.jetbrains.kotlin.ir.visitors.IrElementVisitorVoid$DefaultImpls.visitFile(IrElementVisitorVoid.kt:180)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtensionKt$runOnFileInOrder$1.visitFile(SerializationLoweringExtension.kt:40)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtensionKt$runOnFileInOrder$1.visitFile(SerializationLoweringExtension.kt:40)
+	at org.jetbrains.kotlin.ir.declarations.IrFile.accept(IrFile.kt:28)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitorsKt.acceptVoid(IrVisitors.kt:11)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtensionKt.runOnFileInOrder(SerializationLoweringExtension.kt:40)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtension.generate(SerializationLoweringExtension.kt:194)
+	at org.jetbrains.kotlin.fir.pipeline.ConvertToIrKt.applyIrGenerationExtensions(convertToIr.kt:442)
+	at org.jetbrains.kotlin.fir.pipeline.Fir2IrPipeline.runActualizationPipeline(convertToIr.kt:246)
+	at org.jetbrains.kotlin.fir.pipeline.Fir2IrPipeline.convertToIrAndActualize(convertToIr.kt:130)
+	at org.jetbrains.kotlin.fir.pipeline.ConvertToIrKt.convertToIrAndActualize(convertToIr.kt:99)
+	at org.jetbrains.kotlin.fir.pipeline.ConvertToIrKt.convertToIrAndActualize$default(convertToIr.kt:72)
+	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.convertToIrAndActualizeForJvm(jvmCompilerPipeline.kt:196)
+	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.convertAnalyzedFirToIr(jvmCompilerPipeline.kt:169)
+	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.compileModulesUsingFrontendIrAndLightTree(jvmCompilerPipeline.kt:140)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:148)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:43)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:103)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:49)
+	at org.jetbrains.kotlin.cli.common.CLITool.exec(CLITool.kt:101)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:464)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:73)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:506)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:423)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally$lambda$9$compile(IncrementalCompilerRunner.kt:249)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally(IncrementalCompilerRunner.kt:267)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:120)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:675)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:92)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1660)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalStateException: Serializer for element of type java.time.LocalDateTime has not been found
+	at org.jetbrains.kotlinx.serialization.compiler.backend.ir.SerializerSearchUtilKt.findTypeSerializerOrContext(SerializerSearchUtil.kt:84)
+	at org.jetbrains.kotlinx.serialization.compiler.backend.ir.SerializerSearchUtilKt.getIrSerialTypeInfo(SerializerSearchUtil.kt:63)
+	at org.jetbrains.kotlinx.serialization.compiler.backend.ir.BaseIrGenerator.cacheableChildSerializerInstance(BaseIrGenerator.kt:488)
+	at org.jetbrains.kotlinx.serialization.compiler.backend.ir.BaseIrGenerator.createCachedChildSerializers(BaseIrGenerator.kt:468)
+	at org.jetbrains.kotlinx.serialization.compiler.backend.ir.SerializableIrGenerator.<init>(SerializableIrGenerator.kt:59)
+	at org.jetbrains.kotlinx.serialization.compiler.backend.ir.SerializableIrGenerator$Companion.generate(SerializableIrGenerator.kt:398)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializerClassLowering.lower(SerializationLoweringExtension.kt:146)
+	... 57 more
+
+

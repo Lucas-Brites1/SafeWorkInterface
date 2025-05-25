@@ -28,7 +28,18 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.marginBottom
 import com.safework.R
+import com.safework.api.ApiCaller
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
+import org.bson.types.ObjectId
 import org.w3c.dom.Text
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 object ViewUtils {
     internal var notificationIsRunning: Boolean = false
@@ -236,7 +247,7 @@ interface WidgetFactory<T> {
     fun create(context: Context, data: List<T>): List<View>
 }
 
-data class IssueInfo(val title: String, val status: String, val icon: Int)
+data class IssueInfo(val id: String, val title: String, val status: String)
 
 class HomeDynamicIssuesFactory : WidgetFactory<IssueInfo> {
     override fun create(context: Context, data: List<IssueInfo>): List<View> {
@@ -248,19 +259,14 @@ class HomeDynamicIssuesFactory : WidgetFactory<IssueInfo> {
 
             val titleText = view.findViewById<TextView>(R.id.title)
             val status = view.findViewById<TextView>(R.id.issue_status)
-            val icon = view.findViewById<ImageView>(R.id.issue_icon_status)
 
             titleText.text = issue.title
             status.text = issue.status
             when (issue.status) {
-                "PENDENTE" -> status.setBackgroundResource(R.drawable.status_pending)
-                "ANDAMENTO" -> status.setBackgroundResource(R.drawable.status_wip)
-                "ANALISE" -> status.setBackgroundResource(R.drawable.status_analysis)
-                "FINALIZADA" -> status.setBackgroundResource(R.drawable.status_done)
+                "GRAVE" -> status.setBackgroundResource(R.drawable.status_wip)
+                "MEDIO" -> status.setBackgroundResource(R.drawable.status_analysis)
+                "LEVE" -> status.setBackgroundResource(R.drawable.status_done)
             }
-
-            val iconResource = Icon.createWithResource(context, issue.icon)
-            icon.setImageIcon(iconResource)
 
             views.add(view)
         }
@@ -278,22 +284,48 @@ class IssueCollectionFactory : WidgetFactory<IssueInfo> {
 
         data.forEach { issue ->
             val view = LayoutInflater.from(context).inflate(R.layout.issue_item_collection_layout, parent, false)
-
+            val deleteIcon = view.findViewById<ImageView>(R.id.issue_delete)
             val titleText = view.findViewById<TextView>(R.id.title)
             val status = view.findViewById<TextView>(R.id.issue_status)
-            val icon = view.findViewById<ImageView>(R.id.issue_icon_status)
+
+            deleteIcon.setOnClickListener {
+                val builder = android.app.AlertDialog.Builder(context)
+                builder.setTitle("Confirmar exclusão")
+                builder.setMessage("Deseja realmente excluir esta reclamação?")
+
+                builder.setPositiveButton("Excluir") { _, _ ->
+                    ApiCaller.deleteIssue(issue.id) { success ->
+                        if (success) {
+                            (view.parent as? ViewGroup)?.removeView(view)
+                            ViewUtils.showNotification(
+                                context as Activity,
+                                "Ocorrência deletada com sucesso"
+                            )
+                        } else {
+                            ViewUtils.showNotification(
+                                context as Activity,
+                                "Erro ao deletar ocorrência",
+                                type = ViewUtils.NotificationType.ERROR
+                            )
+                        }
+                    }
+                }
+
+                builder.setNegativeButton("Cancelar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+
+                val dialog = builder.create()
+                dialog.show()
+            }
 
             titleText.text = issue.title
             status.text = issue.status
             when (issue.status) {
-                "PENDENTE" -> status.setBackgroundResource(R.drawable.status_pending)
-                "ANDAMENTO" -> status.setBackgroundResource(R.drawable.status_wip)
-                "ANALISE" -> status.setBackgroundResource(R.drawable.status_analysis)
-                "FINALIZADA" -> status.setBackgroundResource(R.drawable.status_done)
+                "GRAVE" -> status.setBackgroundResource(R.drawable.status_wip)
+                "MEDIO" -> status.setBackgroundResource(R.drawable.status_analysis)
+                "LEVE" -> status.setBackgroundResource(R.drawable.status_done)
             }
-
-            val iconResource = Icon.createWithResource(context, issue.icon)
-            icon.setImageIcon(iconResource)
 
             val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
             layoutParams.bottomMargin = 12

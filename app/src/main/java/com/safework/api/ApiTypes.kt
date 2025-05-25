@@ -1,5 +1,7 @@
 package com.safework.api
 
+import com.safework.models.IssueModel
+
 data class LoginResponse(
     val mensagem: String,
     val infos: UserInfo
@@ -19,4 +21,12 @@ data class SingUpResponse(
     data class RegisterIssueResponse(
     val id: String? = null,
     val erro: String? = null
+)
+
+data class RoleResponse(
+    val role: String
+)
+
+data class IssuesResponse(
+    val problemas: List<IssueModel>
 )
