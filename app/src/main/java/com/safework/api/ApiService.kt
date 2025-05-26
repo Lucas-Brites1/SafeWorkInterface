@@ -51,9 +51,10 @@ interface ApiService {
     @DELETE("problemas/{id}")
     suspend fun deleteIssue(@Path("id") id: String)
 
-    @GET("problemas/busca")
+    @GET("problemas/busca/limite")
     suspend fun getIssuesByDateRange(
         @Query("start") startDate: String,
         @Query("end") endDate: String
     ): List<IssueModel>
+
 }

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient">
 
-    <!-- ScrollView com os campos de busca e resultados -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,50 +15,70 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Campos de filtro de data -->
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="16dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:weightSum="2">
 
-                <!-- Campo de data de início -->
                 <EditText
                     android:id="@+id/startDate"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
                     android:hint="Data Início"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/montserratbold"
                     android:importantForAccessibility="yes"
                     android:contentDescription="Campo de data de início"
                     android:focusable="false"
                     android:clickable="true"
-                    android:cursorVisible="false"/>
+                    android:cursorVisible="false"
+                    android:paddingHorizontal="12dp"
+                    android:gravity="center_vertical" />
 
-                <!-- Campo de data de fim -->
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="wrap_content" />
+
                 <EditText
                     android:id="@+id/endDate"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
                     android:hint="Data Fim"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/montserratbold"
                     android:importantForAccessibility="yes"
                     android:contentDescription="Campo de data de fim"
                     android:focusable="false"
                     android:clickable="true"
-                    android:cursorVisible="false"/>
+                    android:cursorVisible="false"
+                    android:paddingHorizontal="12dp"
+                    android:gravity="center_vertical" />
             </LinearLayout>
 
-            <!-- Botão de busca -->
             <Button
                 android:id="@+id/filterButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:text="Buscar Reclamações"
-                android:onClick="onFilterButtonClicked"/>
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:fontFamily="@font/montserratbold"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/login_button_blue"
+                android:background="@drawable/button_background"
+                android:elevation="4dp"
+                android:layout_marginBottom="16dp" />
 
-            <!-- Container onde as reclamações serão exibidas -->
+            <!-- Container para exibir as reclamações -->
             <LinearLayout
                 android:id="@+id/adminClaimsContainer"
                 android:layout_width="match_parent"

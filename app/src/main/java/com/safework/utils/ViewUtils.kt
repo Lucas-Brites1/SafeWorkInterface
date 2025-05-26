@@ -338,6 +338,37 @@ class IssueCollectionFactory : WidgetFactory<IssueInfo> {
     }
 }
 
+class IssueAdminCollectionFactory : WidgetFactory<IssueInfo> {
+    override fun create(context: Context, data: List<IssueInfo>): List<View> {
+        val views = mutableListOf<View>()
+
+        val parent = LinearLayout(context)
+        parent.orientation = LinearLayout.VERTICAL
+
+        data.forEach { issue ->
+            val view = LayoutInflater.from(context).inflate(R.layout.issue_item_collection_admin_layout, parent, false)
+            val titleText = view.findViewById<TextView>(R.id.title)
+            val status = view.findViewById<TextView>(R.id.issue_status)
+
+            titleText.text = issue.title
+            status.text = issue.status
+            when (issue.status) {
+                "GRAVE" -> status.setBackgroundResource(R.drawable.status_wip)
+                "MEDIO" -> status.setBackgroundResource(R.drawable.status_analysis)
+                "LEVE" -> status.setBackgroundResource(R.drawable.status_done)
+            }
+
+            val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
+            layoutParams.bottomMargin = 12
+            view.layoutParams = layoutParams
+
+            views.add(view)
+        }
+
+        return views
+    }
+}
+
 fun <T> ViewGroup.append(
     context: Context,
     data: T,
