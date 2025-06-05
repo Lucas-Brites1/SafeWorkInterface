@@ -1,5 +1,6 @@
 package com.safework
 
+import android.app.AlertDialog // Importar AlertDialog
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.safework.api.ApiCaller
@@ -44,6 +46,14 @@ class RiskMapActivity : AppCompatActivity(), OnMapReadyCallback {
                 loadIssuesAndMarkers()
             }
         )
+
+        googleMap.setOnMarkerClickListener { marker ->
+            val issue = marker.tag as? IssueModel
+            issue?.let {
+                showIssueDetailsDialog(it)
+            }
+            true
+        }
     }
 
     private fun loadIssuesAndMarkers() {
@@ -58,12 +68,13 @@ class RiskMapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun addMarkersToMap() {
+        googleMap.clear()
         for (issue in issueList) {
             val lat = issue.mapLocal.latitude
             val lng = issue.mapLocal.longitude
             val latLng = LatLng(lat, lng)
 
-            val marker = MarkerOptions()
+            val markerOptions = MarkerOptions()
                 .position(latLng)
                 .title(issue.title)
                 .icon(
@@ -74,8 +85,30 @@ class RiskMapActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
                 )
 
-            googleMap.addMarker(marker)
+            val marker = googleMap.addMarker(markerOptions)
+            marker?.tag = issue
         }
+    }
+
+    private fun showIssueDetailsDialog(issue: IssueModel) {
+        val variables = mutableListOf(
+            mapOf("ISSUE_ID" to issue._id),
+        )
+
+        AlertDialog.Builder(this)
+            .setTitle("Ver Reclamação")
+            .setMessage("Deseja ver os detalhes da reclamação: \"${issue.title}\"?")
+            .setPositiveButton("Sim") { dialog, _ ->
+                dialog.dismiss()
+                ViewUtils.changeActivity<IssueDetailAdminActivity>(
+                    this,
+                    variables
+                )
+            }
+            .setNegativeButton("Não") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 
     override fun onBackPressed() {

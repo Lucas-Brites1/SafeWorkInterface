@@ -75,6 +75,11 @@ class SignUpActivity : AppCompatActivity() {
             )
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        ViewUtils.changeActivity<LoginActivity>(this)
+    }
 }
 
 object UserValidator {
@@ -109,8 +114,6 @@ object UserValidator {
             else -> Response(success = true, message = "Usuário válido")
         }
     }
-
-
 }
 
 

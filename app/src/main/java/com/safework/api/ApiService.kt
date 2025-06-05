@@ -10,6 +10,7 @@ import com.safework.api.SingUpResponse
 import com.safework.models.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.http.DELETE
 import retrofit2.http.Multipart
 import retrofit2.http.Part
@@ -32,6 +33,14 @@ interface ApiService {
         @Path("userId") userId: String,
         @Query("length") length: Int
     ): List<IssueModel>
+
+    @GET("/problemas/busca/{issueId}")
+    suspend fun getIssueById(
+        @Path("issueId") issueId: String
+    ): IssueModel
+
+    @GET("problemas/imagens/{issueId}")
+    suspend fun getImageBytesByIssueId(@Path("issueId") issueId: String): ResponseBody
 
     @GET("/problemas")
     suspend fun getIssues(

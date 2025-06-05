@@ -8,20 +8,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
-import retrofit2.http.Path
-import retrofit2.http.Query
 import java.io.File
 
 object ApiCaller {
     private val api = RetrofitManager.createService(serviceClass = ApiService::class.java)
-
 
     fun loginUser(
         email: String,
@@ -212,6 +208,53 @@ object ApiCaller {
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     callback(Result.failure(e))
+                }
+            }
+        }
+    }
+
+    fun getDetailedIssueById(
+        issueId: String,
+        callback: (Result<IssueModel>) -> Unit
+    ) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = api.getIssueById(issueId = issueId)
+
+                withContext(Dispatchers.Main) {
+                    callback(Result.success(response))
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    callback(Result.failure(e))
+                }
+            }
+        }
+    }
+
+    fun getImageBytesByIssueId(
+        issueId: String,
+        callback: (Result<ByteArray>) -> Unit
+    ) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val responseBody = api.getImageBytesByIssueId(issueId)
+
+                if (responseBody != null) {
+                    val imageData = responseBody.bytes()
+                    withContext(Dispatchers.Main) {
+                        callback(Result.success(imageData))
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        callback(Result.failure(Exception("Resposta da imagem vazia.")))
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    callback(Result.failure(e))
+                    Log.e("ApiCaller", "Erro ao buscar bytes da imagem: ${e.localizedMessage}")
+                    e.printStackTrace()
                 }
             }
         }

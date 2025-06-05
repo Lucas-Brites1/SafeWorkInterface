@@ -31,6 +31,7 @@
         <activity android:name=".AdminActivity" />
         <activity android:name=".RiskMapActivity" />
         <activity android:name=".AdminCollectionActivity" />
+        <activity android:name=".IssueDetailAdminActivity"/>
          <activity
             android:name=".LoginActivity"
             android:exported="true">

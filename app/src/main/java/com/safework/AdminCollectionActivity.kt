@@ -112,7 +112,7 @@ class AdminCollectionActivity : AppCompatActivity() {
                         container.appendAll(
                             context = context,
                             dataList = issueInfoList,
-                            factory = IssueCollectionFactory()
+                            factory = IssueAdminCollectionFactory()
                         )
                     } else {
                         Toast.makeText(context, "Nenhuma reclamação encontrada.", Toast.LENGTH_LONG).show()

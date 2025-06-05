@@ -68,13 +68,12 @@
                 android:id="@+id/filterButton"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="Buscar Reclamações"
+                android:text="Filtrar Reclamações"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:fontFamily="@font/montserratbold"
                 android:textColor="@android:color/white"
-                android:backgroundTint="@color/login_button_blue"
-                android:background="@drawable/button_background"
+                android:background="@drawable/rounded_button"
                 android:elevation="4dp"
                 android:layout_marginBottom="16dp" />
 

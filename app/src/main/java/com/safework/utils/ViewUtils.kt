@@ -27,6 +27,7 @@ import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.marginBottom
+import com.safework.IssueDetailAdminActivity
 import com.safework.R
 import com.safework.api.ApiCaller
 import kotlinx.serialization.KSerializer
@@ -155,7 +156,6 @@ object ViewUtils {
         animateChangeActivity(context as Activity)
         context.finish()
     }
-
 
     fun getIntentVariables(context: Context, variables: List<String>): List<Map<String, Any>> {
         val intent: Intent = (context as Activity).intent
@@ -327,6 +327,7 @@ class IssueCollectionFactory : WidgetFactory<IssueInfo> {
                 "LEVE" -> status.setBackgroundResource(R.drawable.status_done)
             }
 
+
             val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
             layoutParams.bottomMargin = 12
             view.layoutParams = layoutParams
@@ -361,6 +362,24 @@ class IssueAdminCollectionFactory : WidgetFactory<IssueInfo> {
             val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
             layoutParams.bottomMargin = 12
             view.layoutParams = layoutParams
+
+            view.setOnClickListener {
+                val intent = Intent(context, IssueDetailAdminActivity::class.java)
+                intent.putExtra("ISSUE_ID", issue.id)
+                // Você também pode passar outros dados se forem úteis para exibição imediata
+                // intent.putExtra("ISSUE_TITLE", issue.title)
+                // intent.putExtra("ISSUE_STATUS", issue.status)
+                context.startActivity(intent)
+
+                // Opcional: Adicionar animação de transição, se ViewUtils.changeActivity faz isso
+                if (context is Activity) {
+                    // Usar a animação padrão do ViewUtils se quiser consistência,
+                    // ou a padrão do Android ao iniciar uma nova activity.
+                    // A linha abaixo é se você quiser a mesma animação do seu ViewUtils.changeActivity
+                    // mas sem o context.finish() que tem lá.
+                    context.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                }
+            }
 
             views.add(view)
         }

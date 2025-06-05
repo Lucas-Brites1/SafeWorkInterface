@@ -88,8 +88,6 @@ class IssueActivity : AppCompatActivity(), OnMapReadyCallback {
             val commentsInput = findViewById<TextInputEditText>(R.id.inputComments)
             val urgencySpinner = findViewById<Spinner>(R.id.spinnerUrgency)
 
-
-
             MapsUtils.getUserLocation(
                 context = this,
                 onLocationFound = { userLoc ->
